@@ -1,59 +1,65 @@
 (function () {
-    // Вивід тестового prompt
-    prompt("hello");
+  // Вивід тестового prompt (можеш прибрати)
+  prompt("hello");
 
-    // Меню бургер
-    document.querySelector('.burger').addEventListener('click', function () {
-        this.classList.toggle('active');
-        document.querySelector('.nav').classList.toggle('open');
+  // ☰ Бургер-меню
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('.nav');
+  if (burger && nav) {
+    burger.addEventListener('click', function () {
+      this.classList.toggle('active');
+      nav.classList.toggle('open');
     });
+  }
 
-    // Аккордеон
-    var acc = document.getElementsByClassName("accordionclick");
-    for (let i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-        });
+  // 🔽 Аккордеон
+  const acc = document.getElementsByClassName("accordionclick");
+  for (let i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      const panel = this.nextElementSibling;
+      if (panel && panel.style) {
+        panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+      }
+    });
+  }
+
+  // 📤 Відправка форми
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+
+    if (!form) {
+      console.warn("⚠️ Форма не знайдена.");
+      return;
     }
 
-    // Відправка форми
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-        form.addEventListener("submit", async function (e) {
-            e.preventDefault();
+      const name = form.querySelector('[name="name"]')?.value;
+      const message = form.querySelector('[name="message"]')?.value;
 
-            const formData = {
-                name: form.elements["name"].value,
-                email: form.elements["email"].value,
-                message: form.elements["message"].value
-            };
+      if (!name || !message) {
+        alert("⚠️ Заповніть усі поля.");
+        return;
+      }
 
-            try {
-                const response = await fetch("https://sendform-backend.onrender.com/send", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    alert("✅ Повідомлення надіслано успішно!");
-                    form.reset();
-                } else {
-                    alert("❌ Помилка при надсиланні форми.");
-                }
-            } catch (error) {
-                console.error("⛔ Помилка з'єднання:", error);
-                alert("❗ Не вдалося з'єднатись із сервером.");
-            }
+      try {
+        const response = await fetch("https://sendform-backend.onrender.com/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name, message })
         });
+
+        const result = await response.json();
+        alert(result.success ? "✅ Повідомлення надіслано!" : "❌ Помилка: " + result.error);
+        form.reset();
+      } catch (error) {
+        console.error("⛔ Помилка запиту:", error);
+        alert("❗ Не вдалося надіслати форму. Спробуйте пізніше.");
+      }
     });
+  });
 })();
