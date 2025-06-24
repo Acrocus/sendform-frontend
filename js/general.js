@@ -5,8 +5,9 @@
 
   const videoContainer = document.getElementById('videoContainer');
 
+  // 🛡 Перевіряємо, чи є такий блок перед виконанням
   if (!videoContainer) {
-    console.warn("⚠️ Елемент з id 'videoContainer' не знайдено. Відео не буде завантажено.");
+    console.warn("⚠️ Елемент #videoContainer не знайдено. Завантаження відео скасовано.");
     return;
   }
 
@@ -14,6 +15,7 @@
     .then(response => response.json())
     .then(data => {
       videoContainer.innerHTML = '';
+
       data.items.forEach(item => {
         if (item.id.kind === 'youtube#video') {
           const videoId = item.id.videoId;
@@ -35,7 +37,9 @@
     })
     .catch(err => {
       console.error('❌ Помилка при завантаженні відео:', err);
-      videoContainer.innerHTML = 'Не вдалося завантажити відео 😢';
+      // Додаткова перевірка навіть у catch
+      if (videoContainer) {
+        videoContainer.innerHTML = 'Не вдалося завантажити відео 😢';
+      }
     });
-
 })();
