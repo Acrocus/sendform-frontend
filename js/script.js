@@ -21,3 +21,4 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
     document.getElementById('response').innerText = "❌ Помилка з’єднання з сервером.";
   }
 });
+ 
