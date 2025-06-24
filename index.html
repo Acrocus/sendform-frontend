@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="image/android-chrome-512x512.png">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/general.css">
+   <link rel="stylesheet" href="style/inform.css">
+    <script src="js/script.js" defer></script>
+    <script src="js/general.js" defer></script>
+  <title>Форма зворотного зв'язку</title>
+</head>
+<body>
+  <header>
+       <section class="small_menu">
+          <div class="logo">
+            <img src="image/logofon.png" alt="опис">
+          </div>
+         <div class="name_site">
+            <p>CrazyHouseUA</p>
+         </div>
+          <div class="nav">
+            <ul>
+                <li> <button class="accordion" onclick="location.href='https://crazyhouseuasite.wuaze.com/';">Головна</button></li>
+                <li>
+                    <button class="accordion" onclick="location.href='https://crazyhouseuasite.wuaze.com/contacty.html';">Контакти</button>
+                </li>
+                <li><button class="accordion accordionclick">Доручення гільдій</button>
+                    <div class="panel">
+                        <a href="https://crazyhouseuasite.wuaze.com/goldemblem.html" class="menu_link">Золота емблема</a>
+                        <a href="https://crazyhouseuasite.wuaze.com/fiolemblem.html" class="menu_link">Фіолетова емблема</a>
+                    </div>
+                </li>
+                <li>
+                  <button class="accordion" id="this_page" onclick="location.href='https://sendform-w9ez.onrender.com';">Зворотній зв'язок</button>
+                </li>
+                <li><button class="accordion">Section 1</button></li>
+            </ul>
+          </div>
+
+          <div class="burger">
+            <span></span>
+          </div>
+         
+       </section>
+    </header>
+<main>
+      <section class="centr_block">
+       
+        <div class="big_menu">
+            <div class="image-container">
+                <img src="image/logofon.png" alt="Опис зображення">
+            </div>
+            <div class="inform_text">
+                <p>Chu $ NgU</p>
+            </div>
+        <div class="menu">
+            <button class="accordion" onclick="location.href='https://crazyhouseuasite.wuaze.com/';">Головна</button>
+                    <button class="accordion" onclick="location.href='https://crazyhouseuasite.wuaze.com/contacty.html';">Контакти</button>
+                    <button class="accordion accordionclick">Доручення гільдій</button>
+                    <div class="panel">
+                         <a href="https://crazyhouseuasite.wuaze.com/goldemblem.html" class="menu_link">Золота емблема</a>
+                        <a href="https://crazyhouseuasite.wuaze.com/fiolemblem.html" class="menu_link">Фіолетова емблема</a>
+                     </div>
+                      <button class="accordion" id="this_page" onclick="location.href='https://sendform-w9ez.onrender.com';">Зворотній зв'язок</button>
+                    <button class="accordion">Section 1</button>
+                    <div class="panel">
+                        <a href="menu_link" class="menu_link menu_link_last">Доручення гільдій</a>
+                    </div>
+            
+            
+        </div>
+        </div>
+        <div class="dg_info">
+          <div class="inform_block">
+             <h2>Тут ти можеш подати якусь ідею для покрашення  сайту, або ж додати свої контакти.</h2>
+  <form id="contactForm">
+    <input type="text" name="name" placeholder="Ваше ім’я" required><br>
+    <textarea name="message" placeholder="Ваше повідомлення" required></textarea><br>
+    <button class="sendbuttom" type="submit">Надіслати</button>
+  </form>
+  <p id="response"></p>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      const res = await fetch('/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      document.getElementById('response').innerText = result.success ? "✅ Надіслано!" : "❌ Помилка: " + result.error;
+    });
+  </script>
+  </div>
+        </div>
+
+      </section>
+    </main>
+
+
+</body>
+</html>
