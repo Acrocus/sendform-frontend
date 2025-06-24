@@ -84,23 +84,36 @@
     <button class="sendbuttom" type="submit">Надіслати</button>
   </form>
   <p id="response"></p>
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+ <script>
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    // Забираємо тільки name та message
+    const data = {
+      name: formData.get("name"),
+      message: formData.get("message")
+    };
 
-      const res = await fetch('/send', {
+    try {
+      const res = await fetch('https://sendform-backend.onrender.com/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
 
       const result = await res.json();
-      document.getElementById('response').innerText = result.success ? "✅ Надіслано!" : "❌ Помилка: " + result.error;
-    });
-  </script>
+      document.getElementById('response').innerText = result.success
+        ? "✅ Надіслано!"
+        : "❌ Помилка: " + result.error;
+    } catch (err) {
+      console.error("⛔ Помилка:", err);
+      document.getElementById('response').innerText = "❌ Сервер недоступний.";
+    }
+  });
+</script>
+
   </div>
         </div>
 
