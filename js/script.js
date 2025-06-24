@@ -1,17 +1,16 @@
 (function () {
-    // ⬇️ Вивід тестового prompt
+    // Тестовий prompt
     prompt("hello");
 
-    // ⬇️ Меню бургер
+    // Бургер-меню
     document.querySelector('.burger').addEventListener('click', function () {
         this.classList.toggle('active');
         document.querySelector('.nav').classList.toggle('open');
     });
 
-    // ⬇️ Аккордеон
+    // Аккордеон
     var acc = document.getElementsByClassName("accordionclick");
-    var i;
-    for (i = 0; i < acc.length; i++) {
+    for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var panel = this.nextElementSibling;
@@ -23,7 +22,7 @@
         });
     }
 
-    // ⬇️ Відправка форми
+    // Відправка форми
     document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("form");
 
@@ -46,14 +45,14 @@
                 });
 
                 if (response.ok) {
-                    alert("Повідомлення надіслано успішно ✅");
+                    alert("✅ Повідомлення надіслано успішно!");
                     form.reset();
                 } else {
-                    alert("Помилка відправки ❌");
+                    alert("❌ Помилка при надсиланні форми.");
                 }
             } catch (error) {
-                alert("Помилка з'єднання ❗");
-                console.error(error);
+                console.error("⛔ Помилка з'єднання:", error);
+                alert("❗ Не вдалося з'єднатись із сервером.");
             }
         });
     });
