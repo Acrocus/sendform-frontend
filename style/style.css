@@ -1,0 +1,354 @@
+/* Загальні стилі для всього сайту */
+@font-face {
+    font-family: 'Calibri';
+    src: url('../font/calibri.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Jack';
+    src: url('../font/ftyjackport.ttf') format('truetype');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    background-color: lightgrey;
+    font-family: 'Calibri', sans-serif;
+    font-weight: 400;
+}
+
+
+.open{
+    display: flex !important;
+}
+/* Header */
+header {
+   
+   position: relative;
+   background-color: aqua;
+}
+
+.small_menu{
+    display: none;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    background-color: brown;
+}
+.inform_text{
+    font-family: 'Calibri', sans-serif;
+    font-weight: 900;
+    font-size: larger;
+   
+}
+.name_site p{
+    font-family: 'Jack', sans-serif;
+    color: rgba(244, 149, 29);
+    font-size: clamp(25px, 5vw, 65px);
+}
+.inform_text p{
+    font-family: 'Jack', sans-serif;
+    font-size: 30px;
+    color: rgba(244, 149, 29);
+}
+main {
+   
+  height: 100vh;
+}
+
+.centr_block{
+    position: relative;
+   
+    width: 100%;
+    background-color: blue;
+    display: flex;
+}
+
+
+.big_menu{
+    height: auto;
+    background-color: white;
+    position: relative;
+    flex: 0 0 20%; 
+  
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(0, 0, 0);
+   
+}
+.dg_info{
+    height: auto;
+    background-color: rgba(244, 149, 29);
+    position: relative;
+    flex: 0 0 80%;
+ 
+}
+
+.menu{
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column; /* Розташування елементів вертикально */
+    align-items: center; /* Вирівнювання елементів по центру горизонтально */
+   
+}
+.menu a{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    color: #ffffff;
+    border-top: 2px solid #ffffff; /* Товщина рамки 2px, суцільна лінія, чорний колір */
+    padding: 10px; /* Відступ всередині рамки */
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to right,rgba(23, 23, 24, 1) 50%, #ffffff 50%);
+    background-size: 200% 100%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-position 0.4s ease-in-out;
+}
+.menu a:hover{
+    
+    color: rgba(32, 32, 34);
+    background-color: #ffffff;
+    background-position: -100% 0; /* Фон зсувається праворуч */
+    
+}
+.menu_link{
+    position: relative;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    color: #ffffff;
+    border-top: 2px solid #ffffff; /* Товщина рамки 2px, суцільна лінія, чорний колір */
+    padding: 10px; /* Відступ всередині рамки */
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to right,rgba(23, 23, 24, 1) 50%, #ffffff 50%);
+    background-size: 200% 100%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-position 0.4s ease-in-out;
+
+}
+.menu_link:hover{
+     color: rgba(32, 32, 34);
+    background-color: #ffffff;
+    background-position: -100% 0; /* Фон зсувається праворуч */
+}
+.inform_text{
+    color: #ffffff;
+    text-align: center;margin: 15px;
+}
+.menu_link_last{
+    border-bottom: 2px solid #ffffff; /* Товщина рамки 2px, суцільна лінія, чорний колір */ 
+}
+
+.image-container {
+    width: 100%; /* Блок займає 100% ширини батьківського елемента */
+}
+
+.image-container img {
+    width: 100%; /* Зображення займає 100% ширини контейнера */
+    height: auto; /* Висота автоматично масштабується для збереження пропорцій */
+    display: block; /* Видаляє можливі відступи під зображенням */
+}
+.accordion{
+    background-color: #eee;
+    background-color: rgba(23, 23, 24, 1);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+    background: linear-gradient(to right,rgba(0, 0, 0) 50%, rgba(244, 149, 29) 50%);
+    background-size: 200% 100%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-position 0.4s ease-in-out;
+    font-family: 'Jack', sans-serif;
+    font-size: 30px;
+
+}
+
+
+.active, .accordion:hover {
+    color: rgba(32, 32, 34);
+   
+    background-position: -100% 0; /* Фон зсувається праворуч */
+}
+
+.accordionclick:after {
+    content: '\002B';
+    color: #fff;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+    color: black;
+}
+
+.panel {
+    width: 100%;
+    display: flex;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    flex-direction: column; /* Розташування елементів вертикально */
+    align-items: center;
+    
+}
+
+
+
+footer {
+   background-color: black;
+}
+
+/* Адаптивный макет - при ширине экрана менее 800 пикселей расположите два столбца друг над другом, а не рядом друг с другом */
+@media screen and (max-width: 840px) {
+    
+    .big_menu{
+        display: none;
+    }
+    .dg_info{
+        flex: 0 0 100%; 
+    }
+    .small_block_menu{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+    }
+    .panel a{
+        padding: 15px 0;
+        text-align: center;
+        
+    }
+    .small_menu{
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 100px;
+        background-color: rgba(0, 0, 0);
+        color: #ffffff;
+        padding: 0 20px;
+        z-index: 50;
+    }
+    
+    .logo{
+        display: flex;
+        z-index: 60;
+        width: 90px;
+        height: 90px;
+        background-color: white;
+    }
+   
+    .nav{
+        display: flex;
+        width: 700px;
+        padding: 0 40px;
+    }
+    .nav ul{
+        margin-top: 20px;
+        width: 100%;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .burger{
+        display: flex;
+        position: relative;
+        z-index: 50;
+        align-items: center;
+        justify-content: flex-end ;
+        width: 30px;
+        height: 18px;
+    }
+    .burger span{
+        height: 2px;
+        width: 100%;
+        transform: scale(1);
+        background-color: #faf6fa;
+    }
+    .burger::before, .burger::after{
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background-color: #faf6fa;
+        transition: all 0.3s ease 0s;
+    }
+    .burger::before{
+        top: 0;
+    }
+    .burger::after{
+        bottom: 0;
+    }
+    .burger.active span { transform: scale(0);}
+    .burger.active::before {
+        top: 50%;
+        transform: rotate(-45deg) translate(0, -50%);
+    }
+    .burger.active::after {
+        top: 50%;
+        transform: rotate(45deg) translate(0, -50%);
+    }
+    .nav{
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 87px; bottom: 0; left: 0; right: 0;
+        z-index: 50;
+        overflow-y: auto;
+        padding: 50px 0;
+        background-color: rgba(0, 0, 0);
+        animation: burgerAnimation 0.4s;
+       
+    }
+    .nav ul{
+        flex-direction: column;
+        row-gap: 30px;
+    }
+    @keyframes burgerAnimation {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+}
+
+  /* Адаптивный макет - при ширине экрана менее 400 пикселей сделайте так, чтобы навигационные ссылки располагались друг над другом, а не рядом друг с другом */
+  @media screen and (max-width: 310px) {
+    .name_site{
+        display: none;
+    }
+
+  }
+  #this_page{
+    background: none;
+    background-color: rgba(244, 149, 29);
+
+  }
+  #link_active{
+    background: none;
+    background-color: rgba(244, 149, 29);
+  }
+ 
