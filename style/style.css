@@ -14,7 +14,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgba(244, 149, 29);
+ 
 }
 
 body {
@@ -84,7 +84,7 @@ main {
    
 }
 .dg_info{
-    height: auto;
+    height: 100vh;
     background-color: rgba(244, 149, 29);
     position: relative;
     flex: 0 0 80%;
