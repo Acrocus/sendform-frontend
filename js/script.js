@@ -1,57 +1,63 @@
-// -------------------------
-// 2) Бургер меню (відкриває small_menu на малих екранах)
-// -------------------------
-const burger = document.querySelector(".burger");
-const smallMenu = document.querySelector(".small_menu");
-const body = document.body;
+document.addEventListener("DOMContentLoaded", () => {
 
-const MOBILE_WIDTH = 900; // ширина, до якої працює бургер
+  // Aкордеон
+  const accordions = document.getElementsByClassName("accordion");
+  for (let i = 0; i < accordions.length; i++) {
+    accordions[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      const panel = this.nextElementSibling;
+      if (panel) {
+        panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+      }
+    });
+  }
 
-if (burger && smallMenu) {
+  // Бургер-меню
+  const burger = document.querySelector(".burger");
+  const nav = document.querySelector(".nav");
+  const body = document.body;
 
-  const openMenu = () => {
-    burger.classList.add("active");
-    smallMenu.classList.add("active");
-    body.classList.add("nav-open"); // блокуємо прокрутку
-  };
+  if (burger && nav) {
 
-  const closeMenu = () => {
-    burger.classList.remove("active");
-    smallMenu.classList.remove("active");
-    body.classList.remove("nav-open");
-  };
+    const openMenu = () => {
+      burger.classList.add("active");
+      nav.classList.add("open");   // твій CSS: .open { display: flex !important; }
+      body.classList.add("nav-open");
+    };
 
-  // відкриваємо / закриваємо меню
-  burger.addEventListener("click", (e) => {
-    if (window.innerWidth > MOBILE_WIDTH) return; // працює тільки для мобільних
-    e.stopPropagation();
+    const closeMenu = () => {
+      burger.classList.remove("active");
+      nav.classList.remove("open");
+      body.classList.remove("nav-open");
+    };
 
-    if (smallMenu.classList.contains("active")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
+    burger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (nav.classList.contains("open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
 
-  // Закриття при кліку поза меню
-  document.addEventListener("click", (e) => {
-    if (window.innerWidth > MOBILE_WIDTH) return;
-    if (!smallMenu.classList.contains("active")) return;
+    // Закрити при кліку поза меню
+    document.addEventListener("click", (e) => {
+      if (!nav.classList.contains("open")) return;
+      if (!nav.contains(e.target) && !burger.contains(e.target)) {
+        closeMenu();
+      }
+    });
 
-    if (!smallMenu.contains(e.target) && !burger.contains(e.target)) {
-      closeMenu();
-    }
-  });
+    // ESC закриває
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("open")) {
+        closeMenu();
+      }
+    });
 
-  // Закриття по ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && smallMenu.classList.contains("active")) {
-      closeMenu();
-    }
-  });
-
-  // Якщо розтягнути екран — меню закривається
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > MOBILE_WIDTH) closeMenu();
-  });
-}
+    // При розширенні екрана — закриває
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 840) closeMenu();
+    });
+  }
+});
