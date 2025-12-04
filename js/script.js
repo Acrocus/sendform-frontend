@@ -1,6 +1,6 @@
 (function() {
   
-   prompt("hello");
+   prompt("hello ьщерукащслук");
   document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const form = e.target;
