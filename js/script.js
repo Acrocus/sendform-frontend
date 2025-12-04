@@ -1,4 +1,7 @@
-document.getElementById('contactForm').addEventListener('submit', async (e) => {
+(function() {
+  
+   prompt("hello");
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const form = e.target;
   const formData = new FormData(form);
@@ -20,4 +23,4 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
     document.getElementById('response').innerText = "❌ Помилка з’єднання з сервером.";
   }
 });
- 
+ })();
