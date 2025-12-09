@@ -51,10 +51,11 @@ height: 150px;
 @media screen and (max-width: 840px) {
    
     .dg_info{
-        top:100px;
+      
     }
     .inform_block{
         margin-bottom: 30px;
     }
 
 }
+
