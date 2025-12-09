@@ -19,7 +19,8 @@
 
 body {
     position: relative;
-    background-color: lightgrey;
+    
+    background-color: rgba(244, 149, 29);
     font-family: 'Calibri', sans-serif;
     font-weight: 400;
 }
@@ -67,7 +68,7 @@ main {
     position: relative;
    
     width: 100%;
-    background-color: blue;
+    
     display: flex;
 }
 
@@ -353,3 +354,4 @@ footer {
     background-color: rgba(244, 149, 29);
   }
  
+
